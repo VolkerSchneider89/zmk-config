@@ -3,6 +3,24 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
+		behaviors {
+		        umlaut_a: umlaut_a {
+		            compatible = "zmk,behavior-hold-tap";
+		            #binding-cells = <0>;
+		            bindings = <&kp LALT>, <&kp QMARK>;  // AltGr + ? → Ä
+		        };
+		        umlaut_o: umlaut_o {
+		            compatible = "zmk,behavior-hold-tap";
+		            #binding-cells = <0>;
+		            bindings = <&kp LALT>, <&kp SEMI>;   // AltGr + ; → Ö
+		        };
+		        umlaut_u: umlaut_u {
+		            compatible = "zmk,behavior-hold-tap";
+		            #binding-cells = <0>;
+		            bindings = <&kp LALT>, <&kp LBKT>;   // AltGr + [ → Ü
+		        };
+		    };
+			
         keymap {
                 compatible = "zmk,keymap";
 
@@ -29,8 +47,8 @@
 // |       |       |       |       |       |       |          |       |       |       |       |       |       |
                         bindings = <
    &trans    &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4           &trans    &trans    &trans   &trans   &trans  &bt BT_CLR
-   &trans    &trans         &trans         &trans         &trans         &trans                 &trans    &kp U_UDIA  &trans  &kp O_UDIA   &trans  &trans
-   &trans    &kp A_UDIA     &trans         &kp LPAR       &kp RPAR       &trans                 &trans    &kp LBKT  &kp RBKT &kp MINUS   &kp EQUAL  &trans
+   &trans    &trans         &trans         &trans         &trans         &trans                 &trans    &umlaut_u  &trans  &umlaut_o   &trans  &trans
+   &trans    &umlaut_a      &trans         &kp LPAR       &kp RPAR       &trans                 &trans    &kp LBKT  &kp RBKT &kp MINUS   &kp EQUAL  &trans
    &trans    &trans         &trans         &trans         &trans         &trans                 &trans    &trans    &trans   &trans   &trans  &trans
                         >;
                 };
